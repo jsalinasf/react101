@@ -1,2 +1,2 @@
 # react101
-Learning react basic concepts
+A playground for learning React basic concepts
