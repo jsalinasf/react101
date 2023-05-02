@@ -1,6 +1,6 @@
 function Label({ config, className, children }) {
   return (
-    <label {...config} className={className}>
+    <label {...config} className={`form-label ${className}`}>
       {children}
     </label>
   );
