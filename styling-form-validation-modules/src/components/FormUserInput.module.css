@@ -4,6 +4,7 @@
   margin: auto;
   background-color: #94c9f5;
   padding: 1rem 1rem 0;
+  border-radius: 5px;
 }
 
 .formDisplay {
@@ -12,7 +13,8 @@
 }
 
 .formLabel {
-  text-align: center;
+  margin: 0 auto;
+  font-weight: 500;
   margin-bottom: 0.15rem;
 }
 
@@ -28,11 +30,11 @@
 
 .formInputError {
   background-color: rgb(227, 75, 106);
-  color: #edebeb;
+  color: #fff;
 }
 
 .formButton {
-  width: 50%;
+  width: 30%;
   margin: 0 auto;
   margin-bottom: 1rem;
 }
