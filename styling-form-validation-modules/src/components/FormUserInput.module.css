@@ -1,0 +1,33 @@
+.formWrapper {
+  width: 50%;
+  max-width: 500px;
+  margin: auto;
+  background-color: #94c9f5;
+  padding: 1rem 1rem 0;
+}
+
+.formDisplay {
+  display: flex;
+  flex-direction: column;
+}
+
+.formLabel {
+  text-align: center;
+  margin-bottom: 0.15rem;
+}
+
+.formLabelError {
+  color: red;
+  font-weight: 500;
+}
+
+.formInput {
+  background-color: rgb(225, 229, 231);
+  margin-bottom: 1rem;
+}
+
+.formButton {
+  width: 50%;
+  margin: 0 auto;
+  margin-bottom: 1rem;
+}
