@@ -63,11 +63,11 @@ function FormUserInput() {
             onChange: inputEmailHandler,
             onBlur: validateEmail,
           }}
-          className={!isEmailValid && "form-input-error"}
+          className={!isEmailValid && classes.formInputError}
         ></Input>
         <Label
           config={{ htmlFor: "password" }}
-          className={!isPasswordValid && "form-label-error"}
+          className={!isPasswordValid && classes.formLabelError}
         >
           Password:
         </Label>
@@ -79,7 +79,7 @@ function FormUserInput() {
             onChange: inputPasswordHandler,
             onBlur: validatePassword,
           }}
-          className={!isPasswordValid && "form-input-error"}
+          className={!isPasswordValid && classes.formInputError}
         ></Input>
         <Button
           config={{ onClick: buttonSubmitHandler }}

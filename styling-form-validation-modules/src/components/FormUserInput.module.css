@@ -17,13 +17,18 @@
 }
 
 .formLabelError {
-  color: red;
-  font-weight: 500;
+  color: rgb(255, 0, 0);
+  font-weight: 600;
 }
 
 .formInput {
   background-color: rgb(225, 229, 231);
   margin-bottom: 1rem;
+}
+
+.formInputError {
+  background-color: rgb(227, 75, 106);
+  color: #edebeb;
 }
 
 .formButton {
