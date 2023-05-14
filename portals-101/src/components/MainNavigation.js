@@ -3,24 +3,28 @@ import SideDrawer from "./SideDrawer";
 import classes from "./MainNavigation.module.css";
 
 function MainNavigation() {
-  const [displayDrawer, setDisplayDrawer] = useState(false);
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
-  function handleClick() {
-    setDisplayDrawer(!displayDrawer);
+  function openDrawerHandler() {
+    setIsDrawerOpen(true);
+  }
+
+  function closeDrawerHandler() {
+    setIsDrawerOpen(false);
   }
 
   return (
     <>
       <header className={classes.header}>
         <h1>Demo App</h1>
-        <button className={classes.btn} onClick={handleClick}>
+        <button className={classes.btn} onClick={openDrawerHandler}>
           <div />
           <div />
           <div />
         </button>
       </header>
       {/* Should be shown conditionally: <SideDrawer />  */}
-      {displayDrawer ? <SideDrawer /> : null}
+      {isDrawerOpen && <SideDrawer onClose={closeDrawerHandler} />}
     </>
   );
 }

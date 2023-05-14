@@ -1,10 +1,10 @@
 import { createPortal } from "react-dom";
 import classes from "./SideDrawer.module.css";
 
-function SideDrawer() {
+function SideDrawer({ onClose }) {
   return createPortal(
     <>
-      <div className={classes.backdrop} />
+      <div className={classes.backdrop} onClick={onClose} />
       <aside className={classes.drawer}>
         <nav>
           <ul>
