@@ -20,8 +20,11 @@ function InputGuess() {
         onChange={(event) => {
           setGuess(event.target.value.toUpperCase());
         }}
-        pattern="\w{5}"
-        title="5 letter word only"
+        pattern="[A-Za-z]{5}"
+        title="5 characters required, not numbers allowed"
+        required
+        minLength={5}
+        maxLength={5}
       ></input>
     </form>
   );
