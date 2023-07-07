@@ -15,11 +15,11 @@ function Game() {
   const [guesses, setGuesses] = React.useState([]);
 
   function handleSubmitGuess(tentativeGuess) {
-    const newGuess = {
+    const nextGuess = {
       id: crypto.randomUUID(),
       value: tentativeGuess,
     };
-    const nextGuesses = [...guesses, newGuess];
+    const nextGuesses = [...guesses, nextGuess];
     setGuesses(nextGuesses);
   }
 
