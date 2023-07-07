@@ -6,7 +6,7 @@ function GuessResults({ guesses }) {
       {guesses.map((guess) => {
         return (
           <p className={guess} key={guess.id}>
-            {guess.guess}
+            {guess.value}
           </p>
         );
       })}
