@@ -6,9 +6,12 @@ import { NUM_OF_GUESSES_ALLOWED } from "../../constants";
 function GuessResults({ guesses }) {
   return (
     <>
-      {range(NUM_OF_GUESSES_ALLOWED).map((element) => (
-        <Guess guess={guesses[element]} />
-      ))}
+      {range(NUM_OF_GUESSES_ALLOWED).map(
+        (element) =>
+          !!guesses[element] && (
+            <Guess key={Math.random(2)} guess={guesses[element]} />
+          )
+      )}
     </>
   );
 }

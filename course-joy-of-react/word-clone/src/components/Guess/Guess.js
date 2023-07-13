@@ -2,15 +2,16 @@ import React from "react";
 
 function Guess({ guess }) {
   if (typeof guess !== "object") {
-    console.log("Not object");
-    guess = {
-      id: Math.random(1),
-      value: "C",
-    };
+    return <></>;
   }
+
   return (
     <p className="guess">
-      <span className="cell">{guess.value}</span>
+      {[...guess.value].map((letter, index) => (
+        <span className="cell" key={index}>
+          {letter}
+        </span>
+      ))}
     </p>
   );
 }
