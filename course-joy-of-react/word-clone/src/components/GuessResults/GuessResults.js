@@ -6,11 +6,12 @@ import { NUM_OF_GUESSES_ALLOWED } from "../../constants";
 function GuessResults({ guesses }) {
   return (
     <>
-      {range(NUM_OF_GUESSES_ALLOWED).map(
-        (index) =>
-          !!guesses[index] && (
-            <Guess key={guesses[index].id} guess={guesses[index]} />
-          )
+      {range(NUM_OF_GUESSES_ALLOWED).map((index) =>
+        guesses[index] ? (
+          <Guess key={guesses[index].id} guess={guesses[index]} />
+        ) : (
+          <Guess key={index} guess={null} />
+        )
       )}
     </>
   );
