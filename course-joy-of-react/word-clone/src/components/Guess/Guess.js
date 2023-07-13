@@ -1,14 +1,16 @@
 import React from "react";
 
-function Guess() {
+function Guess({ guess }) {
+  if (typeof guess !== "object") {
+    console.log("Not object");
+    guess = {
+      id: Math.random(1),
+      value: "C",
+    };
+  }
   return (
     <p className="guess">
-      <span className="cell">A</span>
-      <span className="cell">A</span>
-      <span className="cell">A</span>
-      <span className="cell">A</span>
-      <span className="cell">A</span>
-      <span className="cell">A</span>
+      <span className="cell">{guess.value}</span>
     </p>
   );
 }
