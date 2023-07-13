@@ -7,9 +7,9 @@ function GuessResults({ guesses }) {
   return (
     <>
       {range(NUM_OF_GUESSES_ALLOWED).map(
-        (element) =>
-          !!guesses[element] && (
-            <Guess key={Math.random(2)} guess={guesses[element]} />
+        (index) =>
+          !!guesses[index] && (
+            <Guess key={guesses[index].id} guess={guesses[index]} />
           )
       )}
     </>
