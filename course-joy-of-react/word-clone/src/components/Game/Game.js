@@ -16,7 +16,6 @@ console.info({ answer });
 function Game() {
   const [guesses, setGuesses] = React.useState([]);
   const [isGameOver, setIsGameOver] = React.useState(false);
-  const [attempts, setAttempts] = React.useState(0);
   const [modal, setModal] = React.useState("");
 
   function handleSubmitGuess(tentativeGuess) {
@@ -25,15 +24,12 @@ function Game() {
     const nextGuesses = [...guesses, nextGuess];
     setGuesses(nextGuesses);
 
-    const nextAttempt = attempts + 1;
-    setAttempts(nextAttempt);
-
-    if (nextAttempt === NUM_OF_GUESSES_ALLOWED) {
+    if (nextGuesses.length === NUM_OF_GUESSES_ALLOWED) {
       setIsGameOver(true);
       setModal("sad");
     }
 
-    if (tentativeGuess === answer) {
+    if (tentativeGuess.toUpperCase() === answer) {
       setIsGameOver(true);
       setModal("happy");
     }
@@ -43,9 +39,9 @@ function Game() {
     <>
       <GuessResults guesses={guesses} answer={answer} />
       <GuessInput handleSubmitGuess={handleSubmitGuess} disabled={isGameOver} />
-      {isGameOver ? (
-        <Banner className={modal} answer={answer} attempts={attempts} />
-      ) : undefined}
+      {isGameOver && (
+        <Banner className={modal} answer={answer} attempts={guesses.length} />
+      )}
     </>
   );
 }
