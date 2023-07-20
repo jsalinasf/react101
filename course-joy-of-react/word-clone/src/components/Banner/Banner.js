@@ -1,9 +1,18 @@
 import React from "react";
 
-function Banner({ className, message }) {
+function Banner({ className, answer, attempts }) {
   return (
     <div className={`${className} banner`}>
-      <p>{message}</p>
+      {className === "happy" ? (
+        <p>
+          <strong>Congratulations!</strong> Got it in{" "}
+          <strong>{attempts} guesses</strong>
+        </p>
+      ) : (
+        <p>
+          Sorry the correct answer is <strong>{answer}</strong>.
+        </p>
+      )}
     </div>
   );
 }
