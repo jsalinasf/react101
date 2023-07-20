@@ -14,7 +14,7 @@ console.info({ answer });
 
 function Game() {
   const [guesses, setGuesses] = React.useState([]);
-  const [isGameOver, setIsGameOver] = React.useState(true);
+  const [isGameOver, setIsGameOver] = React.useState(false);
 
   function handleSubmitGuess(tentativeGuess) {
     const nextGuess = tentativeGuess;
