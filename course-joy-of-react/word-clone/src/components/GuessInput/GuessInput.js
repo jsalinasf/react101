@@ -1,6 +1,6 @@
 import React from "react";
 
-function GuessInput({ handleSubmitGuess }) {
+function GuessInput({ handleSubmitGuess, disabled }) {
   const [tentativeGuess, setTentativeGuess] = React.useState("");
 
   function handleSubmit(event) {
@@ -15,6 +15,7 @@ function GuessInput({ handleSubmitGuess }) {
       <input
         type="text"
         id="guess-input"
+        disabled={disabled}
         value={tentativeGuess}
         onChange={(event) => {
           setTentativeGuess(event.target.value.toUpperCase());
