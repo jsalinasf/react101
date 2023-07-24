@@ -7,6 +7,7 @@ import { NUM_OF_GUESSES_ALLOWED } from "../../constants";
 import GuessInput from "../GuessInput/GuessInput";
 import GuessResults from "../GuessResults/GuessResults";
 import Banner from "../Banner/Banner";
+import KeyBoard from "../Keyboard/Keyboard";
 
 // Pick a random word on every pageload.
 const answer = sample(WORDS);
@@ -39,6 +40,7 @@ function Game() {
     <>
       <GuessResults guesses={guesses} answer={answer} />
       <GuessInput handleSubmitGuess={handleSubmitGuess} disabled={isGameOver} />
+      <KeyBoard />
       {isGameOver && (
         <Banner className={modal} answer={answer} attempts={guesses.length} />
       )}
