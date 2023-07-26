@@ -22,11 +22,29 @@ function Game() {
   const [modal, setModal] = React.useState("");
   const [letters, setLetters] = React.useState({});
 
+  function updateKeyboard(tentativeGuess) {
+    const result = checkGuess(tentativeGuess, answer);
+    let nextLetters = {};
+    result.forEach((element) => {
+      if (result) {
+        // check if the letter was already marked as "correct" on the keyboard
+        // if so, dont do anything
+        // otherwise, add this letter to the "letters" object so it can be painted on the GUI
+        if (!(letters[element.letter] === "correct")) {
+          nextLetters[element.letter] = element.status;
+        }
+      }
+    });
+    setLetters({ ...letters, ...nextLetters });
+  }
+
   function handleSubmitGuess(tentativeGuess) {
     const nextGuess = tentativeGuess;
 
     const nextGuesses = [...guesses, nextGuess];
     setGuesses(nextGuesses);
+
+    updateKeyboard(tentativeGuess);
 
     if (nextGuesses.length === NUM_OF_GUESSES_ALLOWED) {
       setIsGameOver(true);
@@ -37,33 +55,6 @@ function Game() {
       setIsGameOver(true);
       setModal("happy");
     }
-
-    const result = checkGuess(tentativeGuess, answer);
-
-    let nextLetters = {};
-
-    result.forEach((element) => {
-      if (result) {
-        console.log(result, element);
-        nextLetters[element.letter] = element.status;
-      }
-    });
-
-    console.log(nextLetters);
-    console.log(letters);
-
-    const nextNextLetters = { ...letters, ...nextLetters };
-    setLetters(nextNextLetters);
-
-    // console.log(letters);
-    // setLetters({
-    //   A: "correct",
-    //   B: "misplaced",
-    //   C: "incorrect",
-    //   Q: "incorrect",
-    //   R: "correct",
-    //   P: "misplaced",
-    // });
   }
 
   return (
