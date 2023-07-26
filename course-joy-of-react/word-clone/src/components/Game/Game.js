@@ -22,6 +22,7 @@ function Game() {
   const [modal, setModal] = React.useState("");
   const [letters, setLetters] = React.useState({});
 
+  // handle the letters state to mark them as correct, misplaced or wrong
   function updateKeyboard(tentativeGuess) {
     const result = checkGuess(tentativeGuess, answer);
     let nextLetters = {};
