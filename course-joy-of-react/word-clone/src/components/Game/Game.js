@@ -4,7 +4,6 @@ import { sample } from "../../utils";
 import { WORDS } from "../../data";
 import { NUM_OF_GUESSES_ALLOWED } from "../../constants";
 import { checkGuess } from "../../game-helpers";
-import { range } from "../../utils";
 
 import GuessInput from "../GuessInput/GuessInput";
 import GuessResults from "../GuessResults/GuessResults";
@@ -12,7 +11,8 @@ import Banner from "../Banner/Banner";
 import KeyBoard from "../Keyboard/Keyboard";
 
 // Pick a random word on every pageload.
-const answer = sample(WORDS);
+// const answer = sample(WORDS);
+const answer = "MONTH";
 // To make debugging easier, we'll log the solution in the console.
 console.info({ answer });
 
@@ -50,8 +50,10 @@ function Game() {
     });
 
     console.log(nextLetters);
+    console.log(letters);
 
-    setLetters(nextLetters);
+    const nextNextLetters = { ...letters, ...nextLetters };
+    setLetters(nextNextLetters);
 
     // console.log(letters);
     // setLetters({
