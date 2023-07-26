@@ -3,6 +3,8 @@ import React from "react";
 import { sample } from "../../utils";
 import { WORDS } from "../../data";
 import { NUM_OF_GUESSES_ALLOWED } from "../../constants";
+import { checkGuess } from "../../game-helpers";
+import { range } from "../../utils";
 
 import GuessInput from "../GuessInput/GuessInput";
 import GuessResults from "../GuessResults/GuessResults";
@@ -18,6 +20,7 @@ function Game() {
   const [guesses, setGuesses] = React.useState([]);
   const [isGameOver, setIsGameOver] = React.useState(false);
   const [modal, setModal] = React.useState("");
+  const [letters, setLetters] = React.useState({});
 
   function handleSubmitGuess(tentativeGuess) {
     const nextGuess = tentativeGuess;
@@ -34,13 +37,38 @@ function Game() {
       setIsGameOver(true);
       setModal("happy");
     }
+
+    const result = checkGuess(tentativeGuess, answer);
+
+    let nextLetters = {};
+
+    result.forEach((element) => {
+      if (result) {
+        console.log(result, element);
+        nextLetters[element.letter] = element.status;
+      }
+    });
+
+    console.log(nextLetters);
+
+    setLetters(nextLetters);
+
+    // console.log(letters);
+    // setLetters({
+    //   A: "correct",
+    //   B: "misplaced",
+    //   C: "incorrect",
+    //   Q: "incorrect",
+    //   R: "correct",
+    //   P: "misplaced",
+    // });
   }
 
   return (
     <>
       <GuessResults guesses={guesses} answer={answer} />
       <GuessInput handleSubmitGuess={handleSubmitGuess} disabled={isGameOver} />
-      <KeyBoard />
+      <KeyBoard letters={letters} />
       {isGameOver && (
         <Banner className={modal} answer={answer} attempts={guesses.length} />
       )}

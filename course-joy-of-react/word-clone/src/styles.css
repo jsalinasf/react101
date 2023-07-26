@@ -259,11 +259,30 @@ h1 {
 
 .keyboard-cell {
   position: relative;
-  width: 2.2rem;
+  width: 2.3rem;
+  /* width: 20%; */
   display: grid;
   place-content: center;
   aspect-ratio: 1 / 1;
   border: 2px solid var(--color-gray-700);
   border-radius: var(--radius);
   font-size: 2rem;
+}
+
+.keyboard-cell.correct {
+  background: var(--color-success);
+  border-color: var(--color-success);
+  color: white;
+}
+
+.keyboard-cell.misplaced {
+  background: var(--color-warning);
+  border-color: var(--color-warning);
+  color: white;
+}
+
+.keyboard-cell.incorrect {
+  background: var(--color-gray-300);
+  border-color: var(--color-gray-300);
+  color: white;
 }
