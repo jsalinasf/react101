@@ -11,8 +11,8 @@ import Banner from "../Banner/Banner";
 import KeyBoard from "../Keyboard/Keyboard";
 
 // Pick a random word on every pageload.
-// const answer = sample(WORDS);
-const answer = "MONTH";
+const answer = sample(WORDS);
+
 // To make debugging easier, we'll log the solution in the console.
 console.info({ answer });
 
