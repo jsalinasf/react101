@@ -286,3 +286,20 @@ h1 {
   border-color: var(--color-gray-300);
   color: white;
 }
+
+.button-restart {
+  background-color: rgb(92, 159, 226);
+  font-size: 1.3rem;
+  color: aliceblue;
+  text-transform: capitalize;
+  text-align: center;
+  padding: 4px;
+  width: 40%;
+  margin: 0 auto;
+  border-radius: 5px;
+}
+
+.button-restart:hover {
+  background-color: aliceblue;
+  color: rgb(92, 159, 226);
+}

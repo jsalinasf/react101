@@ -9,9 +9,10 @@ import GuessInput from "../GuessInput/GuessInput";
 import GuessResults from "../GuessResults/GuessResults";
 import Banner from "../Banner/Banner";
 import KeyBoard from "../Keyboard/Keyboard";
+import Button from "../Button/Button";
 
 // Pick a random word on every pageload.
-const answer = sample(WORDS);
+let answer = sample(WORDS);
 
 // To make debugging easier, we'll log the solution in the console.
 console.info({ answer });
@@ -39,6 +40,16 @@ function Game() {
     setLetters({ ...letters, ...nextLetters });
   }
 
+  // Restart Game button - reset game
+  function handleClick() {
+    setGuesses([]);
+    setLetters({});
+    setModal("");
+    answer = sample(WORDS);
+    console.info({ answer });
+    setIsGameOver(false);
+  }
+
   function handleSubmitGuess(tentativeGuess) {
     const nextGuess = tentativeGuess;
 
@@ -60,6 +71,7 @@ function Game() {
 
   return (
     <>
+      {isGameOver && <Button handleClick={handleClick}>Restart Game</Button>}
       <GuessResults guesses={guesses} answer={answer} />
       <GuessInput handleSubmitGuess={handleSubmitGuess} disabled={isGameOver} />
       <KeyBoard letters={letters} />
