@@ -14,22 +14,27 @@ export default function TodoComposer({ addNewTodo }) {
   }
 
   // button Add newTodo
-  function handleClick() {
-    addNewTodo(newTodo);
+  function handleSubmit(event) {
+    event.preventDefault();
+    const newId = window.crypto.randomUUID();
+    addNewTodo({ id: newId, task: newTodo });
     setNewTodo("");
+    newTodoRef.current.focus();
   }
 
   return (
-    <div className="wrapperTodoComposer">
-      <label htmlFor="inputNewTodo">New To-Do:</label>
-      <input
-        id="inputNewTodo"
-        ref={newTodoRef}
-        type="text"
-        value={newTodo}
-        onChange={handleChange}
-      ></input>
-      <button onClick={handleClick}>Add</button>
+    <div>
+      <form onSubmit={handleSubmit}>
+        <label htmlFor="inputNewTodo">New To-Do:</label>
+        <input
+          id="inputNewTodo"
+          ref={newTodoRef}
+          type="text"
+          value={newTodo}
+          onChange={handleChange}
+        ></input>
+        <button>Submit</button>
+      </form>
     </div>
   );
 }
