@@ -17,13 +17,16 @@ export default function Todolist() {
   }
 
   function editTodo(id, status, task) {
-    console.log(id, status, task);
     const nextTodos = todos.map((todo) => {
       return todo.id === id
         ? { ...todo, id: id, status: status, task: task }
         : todo;
     });
-    console.log(nextTodos);
+    setTodos(nextTodos);
+  }
+
+  function deleteTodo(id) {
+    const nextTodos = todos.filter((todo) => todo.id !== id);
     setTodos(nextTodos);
   }
 
@@ -32,7 +35,12 @@ export default function Todolist() {
       <TodoComposer addNewTodo={addNewTodo} />
       <ul>
         {todos.map((todo) => (
-          <Todo key={todo.id} todo={todo} editTodo={editTodo} />
+          <Todo
+            key={todo.id}
+            todo={todo}
+            editTodo={editTodo}
+            deleteTodo={deleteTodo}
+          />
         ))}
       </ul>
     </div>

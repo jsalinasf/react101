@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Todo({ todo, editTodo }) {
+export default function Todo({ todo, editTodo, deleteTodo }) {
   return (
     <li>
       <span>
@@ -9,7 +9,15 @@ export default function Todo({ todo, editTodo }) {
           checked={todo.status}
           onChange={() => editTodo(todo.id, !todo.status, todo.task)}
         />
-        {todo.task}
+      </span>
+      <span>
+        <input placeholder={todo.task} disabled />
+      </span>
+      <span>
+        <button>edit</button>
+      </span>
+      <span>
+        <button onClick={() => deleteTodo(todo.id)}>delete</button>
       </span>
     </li>
   );
