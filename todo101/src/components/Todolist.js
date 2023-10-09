@@ -4,11 +4,11 @@ import TodoComposer from "./TodoComposer";
 
 export default function Todolist() {
   const [todos, setTodos] = React.useState([
-    { id: 1, task: "Withdraw cash" },
-    { id: 2, task: "Buy medicine" },
-    { id: 3, task: "Listen to music" },
-    { id: 4, task: "Walk the dogs" },
-    { id: 5, task: "Play videogames" },
+    { id: 1, status: false, task: "Withdraw cash" },
+    { id: 2, status: false, task: "Buy medicine" },
+    { id: 3, status: true, task: "Listen to music" },
+    { id: 4, status: true, task: "Walk the dogs" },
+    { id: 5, status: false, task: "Play videogames" },
   ]);
 
   function addNewTodo(newTodo) {
@@ -16,12 +16,23 @@ export default function Todolist() {
     setTodos(nextTodos);
   }
 
+  function editTodo(id, status, task) {
+    console.log(id, status, task);
+    const nextTodos = todos.map((todo) => {
+      return todo.id === id
+        ? { ...todo, id: id, status: status, task: task }
+        : todo;
+    });
+    console.log(nextTodos);
+    setTodos(nextTodos);
+  }
+
   return (
     <div>
       <TodoComposer addNewTodo={addNewTodo} />
       <ul>
-        {todos.map((item) => (
-          <Todo key={item.id} todo={item} />
+        {todos.map((todo) => (
+          <Todo key={todo.id} todo={todo} editTodo={editTodo} />
         ))}
       </ul>
     </div>
