@@ -3,7 +3,6 @@ import React from "react";
 export default function Todo({ todo, editTodo, deleteTodo }) {
   const [task, setTask] = React.useState(todo.task);
   const [isEditDisabled, setIsEditDisabled] = React.useState(true);
-  const [editText, setEditText] = React.useState(true);
   const taskRef = React.useRef();
 
   return (
@@ -26,11 +25,13 @@ export default function Todo({ todo, editTodo, deleteTodo }) {
       <span>
         <button
           onClick={() => {
+            if (isEditDisabled === false) {
+              editTodo(todo.id, todo.status, task);
+            }
             setIsEditDisabled(!isEditDisabled);
-            setEditText(!editText);
           }}
         >
-          {editText === true ? "edit" : "save"}
+          {isEditDisabled === true ? "edit" : "save"}
         </button>
       </span>
       <span>

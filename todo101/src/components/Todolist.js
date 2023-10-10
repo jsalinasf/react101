@@ -10,6 +10,7 @@ export default function Todolist() {
     { id: 4, status: true, task: "Walk the dogs" },
     { id: 5, status: false, task: "Play videogames" },
   ]);
+  console.log("🚀 ~ file: Todolist.js:13 ~ Todolist ~ todos:", todos);
 
   function addNewTodo(newTodo) {
     const nextTodos = [...todos, newTodo];
