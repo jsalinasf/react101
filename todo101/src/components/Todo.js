@@ -1,8 +1,24 @@
 import React from "react";
 
 export default function Todo({ todo, editTodo, deleteTodo }) {
-  const [task, setTask] = React.useState(todo.task);
+  const [label, setLabel] = React.useState(todo.label);
   const [isEditDisabled, setIsEditDisabled] = React.useState(true);
+
+  function handleCheckBoxChange() {
+    const updatedTodo = {
+      ...todo,
+      status: !todo.status,
+    };
+    editTodo(updatedTodo);
+  }
+
+  function handleLabelChange() {
+    const updatedTodo = {
+      ...todo,
+      label: label,
+    };
+    editTodo(updatedTodo);
+  }
 
   return (
     <li>
@@ -10,21 +26,21 @@ export default function Todo({ todo, editTodo, deleteTodo }) {
         <input
           type="checkbox"
           checked={todo.status}
-          onChange={() => editTodo(todo.id, !todo.status, todo.task)}
+          onChange={handleCheckBoxChange}
         />
       </span>
       <span>
         <input
-          value={task}
+          value={label}
           disabled={isEditDisabled}
-          onChange={(event) => setTask(event.target.value)}
+          onChange={(event) => setLabel(event.target.value)}
         />
       </span>
       <span>
         <button
           onClick={() => {
             if (isEditDisabled === false) {
-              editTodo(todo.id, todo.status, task);
+              handleLabelChange();
             }
             setIsEditDisabled(!isEditDisabled);
           }}

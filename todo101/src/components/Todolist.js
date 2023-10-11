@@ -4,11 +4,11 @@ import TodoComposer from "./TodoComposer";
 
 export default function Todolist() {
   const [todos, setTodos] = React.useState([
-    { id: 1, status: false, task: "Withdraw cash" },
-    { id: 2, status: false, task: "Buy medicine" },
-    { id: 3, status: true, task: "Listen to music" },
-    { id: 4, status: true, task: "Walk the dogs" },
-    { id: 5, status: false, task: "Play videogames" },
+    { id: 1, status: false, label: "Withdraw cash" },
+    { id: 2, status: false, label: "Buy medicine" },
+    { id: 3, status: true, label: "Listen to music" },
+    { id: 4, status: true, label: "Walk the dogs" },
+    { id: 5, status: false, label: "Play videogames" },
   ]);
   console.log("🚀 ~ file: Todolist.js:13 ~ Todolist ~ todos:", todos);
 
@@ -17,11 +17,9 @@ export default function Todolist() {
     setTodos(nextTodos);
   }
 
-  function editTodo(id, status, task) {
+  function editTodo(updatedTodo) {
     const nextTodos = todos.map((todo) => {
-      return todo.id === id
-        ? { ...todo, id: id, status: status, task: task }
-        : todo;
+      return todo.id === updatedTodo.id ? updatedTodo : todo;
     });
     setTodos(nextTodos);
   }

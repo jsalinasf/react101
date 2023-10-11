@@ -16,8 +16,8 @@ export default function TodoComposer({ addNewTodo }) {
   // button Add newTodo
   function handleSubmit(event) {
     event.preventDefault();
-    const newId = window.crypto.randomUUID();
-    addNewTodo({ id: newId, status: false, task: newTodo });
+    const newId = crypto.randomUUID();
+    addNewTodo({ id: newId, status: false, label: newTodo });
     setNewTodo("");
     newTodoRef.current.focus();
   }
