@@ -3,7 +3,6 @@ import React from "react";
 export default function Todo({ todo, editTodo, deleteTodo }) {
   const [task, setTask] = React.useState(todo.task);
   const [isEditDisabled, setIsEditDisabled] = React.useState(true);
-  const taskRef = React.useRef();
 
   return (
     <li>
@@ -16,7 +15,6 @@ export default function Todo({ todo, editTodo, deleteTodo }) {
       </span>
       <span>
         <input
-          ref={taskRef}
           value={task}
           disabled={isEditDisabled}
           onChange={(event) => setTask(event.target.value)}
