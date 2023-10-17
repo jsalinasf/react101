@@ -1,0 +1,23 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+.wrapper-timer {
+  background-color: rgb(120, 163, 203);
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+
+.timer {
+  border: 2px solid red;
+  width: 90%;
+  margin: 0 auto;
+}
