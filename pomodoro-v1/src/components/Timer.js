@@ -7,9 +7,9 @@ export default function Timer() {
         <h1>Pomodoro App</h1>
       </header>
       <main>
-        <div className="hours">00</div>
-        <div className="separator">:</div>
-        <div className="minutes">00</div>
+        <div className="timer-chracters">10</div>
+        <div className="timer-chracters">:</div>
+        <div className="timer-chracters">00</div>
       </main>
       <footer>
         <button>Start</button>

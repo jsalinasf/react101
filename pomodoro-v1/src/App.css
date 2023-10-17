@@ -8,6 +8,10 @@
   margin: 0;
 }
 
+body {
+  font-family: "Courier New", Courier, monospace;
+}
+
 .wrapper-timer {
   background-color: rgb(120, 163, 203);
   height: 100vh;
@@ -17,7 +21,28 @@
 }
 
 .timer {
-  border: 2px solid red;
   width: 90%;
   margin: 0 auto;
+}
+
+main {
+  display: flex;
+  justify-content: center;
+}
+
+.timer-chracters {
+  font-size: 14em;
+}
+
+footer {
+  width: 40%;
+  max-width: 350px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-around;
+}
+
+footer button {
+  font-size: 1.1em;
+  padding: 0.25em 1em;
 }
