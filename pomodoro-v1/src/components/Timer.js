@@ -1,14 +1,23 @@
 import React from "react";
+import { MINUTES } from "./initialValues";
+import { SECONDS } from "./initialValues";
 
 export default function Timer() {
   const [isTimerRunning, setIsTimerRunning] = React.useState(false);
-  const [minutes, setMinutes] = React.useState(10);
-  const [seconds, setSeconds] = React.useState(60);
+  const [minutes, setMinutes] = React.useState(MINUTES);
+  const [seconds, setSeconds] = React.useState(SECONDS);
 
   React.useEffect(() => {
     if (isTimerRunning) {
       const timeoutId = setTimeout(() => {
-        setSeconds((currentSeconds) => currentSeconds - 1);
+        let nextSeconds = Number(seconds) - 1;
+        if (Number(nextSeconds) < 0) {
+          nextSeconds = "59";
+        }
+        if (nextSeconds.toString().length === 1) {
+          nextSeconds = nextSeconds.toString().padStart(2, 0);
+        }
+        setSeconds(nextSeconds);
       }, 1000);
       return () => {
         window.clearInterval(timeoutId);
@@ -22,6 +31,11 @@ export default function Timer() {
 
   function handleClickStop() {
     setIsTimerRunning(!isTimerRunning);
+  }
+
+  function handleClickReset() {
+    setMinutes(MINUTES);
+    setSeconds(SECONDS);
   }
 
   return (
@@ -41,7 +55,9 @@ export default function Timer() {
         <button onClick={handleClickStop} disabled={!isTimerRunning}>
           Stop
         </button>
-        <button disabled={isTimerRunning}>Reset</button>
+        <button onClick={handleClickReset} disabled={isTimerRunning}>
+          Reset
+        </button>
       </footer>
     </div>
   );
