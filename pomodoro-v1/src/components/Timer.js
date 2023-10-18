@@ -10,20 +10,25 @@ export default function Timer() {
   React.useEffect(() => {
     if (isTimerRunning) {
       const timeoutId = setTimeout(() => {
-        let nextSeconds = Number(seconds) - 1;
-        let nextMinutes = Number(minutes);
-        if (Number(nextSeconds) < 0) {
-          nextSeconds = "59";
-          nextMinutes = nextMinutes - 1;
+        if (minutes === "00" && seconds === "00") {
+          setIsTimerRunning(false);
+          alert("Time is Up!");
+        } else {
+          let nextSeconds = Number(seconds) - 1;
+          let nextMinutes = Number(minutes);
+          if (Number(nextSeconds) < 0) {
+            nextSeconds = "59";
+            nextMinutes = nextMinutes - 1;
+          }
+          if (nextSeconds.toString().length === 1) {
+            nextSeconds = nextSeconds.toString().padStart(2, 0);
+          }
+          if (nextMinutes.toString().length === 1) {
+            nextMinutes = nextMinutes.toString().padStart(2, 0);
+          }
+          setSeconds(nextSeconds);
+          setMinutes(nextMinutes);
         }
-        if (nextSeconds.toString().length === 1) {
-          nextSeconds = nextSeconds.toString().padStart(2, 0);
-        }
-        if (nextMinutes.toString().length === 1) {
-          nextMinutes = nextMinutes.toString().padStart(2, 0);
-        }
-        setSeconds(nextSeconds);
-        setMinutes(nextMinutes);
       }, 1000);
       return () => {
         window.clearInterval(timeoutId);
