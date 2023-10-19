@@ -1,6 +1,6 @@
 import React from "react";
 
-const MINUTES = "1";
+const MINUTES = "01";
 const SECONDS = "10";
 
 export default function Timer() {
@@ -8,15 +8,27 @@ export default function Timer() {
   const [minutes, setMinutes] = React.useState(MINUTES);
   const [seconds, setSeconds] = React.useState(SECONDS);
 
-  // TODO: The timer seems to get 1 sec delayed for every minute that passes
-  // Probably I should move the useEffect logic out of the useEffect
+  // TODO: Update minutes logic
 
   React.useEffect(() => {
     function handleTick() {
-      let nextSeconds = Number(seconds) - 1;
-      if (nextSeconds === -1) {
-        nextSeconds = 60;
+      if (minutes === "00" && seconds === "00") {
+        console.log("Time is Up!");
+        setIsTimerRunning(false);
+        return;
       }
+
+      let nextSeconds = Number(seconds) - 1;
+
+      if (nextSeconds === -1) {
+        nextSeconds = 59;
+        let nextMinutes = Number(minutes) - 1;
+        if (nextMinutes.toString().length === 1) {
+          nextMinutes = nextMinutes.toString().padStart(2, 0);
+        }
+        setMinutes(nextMinutes);
+      }
+
       if (nextSeconds.toString().length === 1) {
         nextSeconds = nextSeconds.toString().padStart(2, 0);
       }
