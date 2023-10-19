@@ -1,40 +1,37 @@
 import React from "react";
-import { MINUTES } from "./initialValues";
-import { SECONDS } from "./initialValues";
+
+const MINUTES = "1";
+const SECONDS = "10";
 
 export default function Timer() {
   const [isTimerRunning, setIsTimerRunning] = React.useState(false);
   const [minutes, setMinutes] = React.useState(MINUTES);
   const [seconds, setSeconds] = React.useState(SECONDS);
 
+  // TODO: The timer seems to get 1 sec delayed for every minute that passes
+  // Probably I should move the useEffect logic out of the useEffect
+
   React.useEffect(() => {
+    function handleTick() {
+      let nextSeconds = Number(seconds) - 1;
+      if (nextSeconds === -1) {
+        nextSeconds = 60;
+      }
+      if (nextSeconds.toString().length === 1) {
+        nextSeconds = nextSeconds.toString().padStart(2, 0);
+      }
+      setSeconds(nextSeconds);
+    }
+
     if (isTimerRunning) {
       const timeoutId = setTimeout(() => {
-        if (minutes === "00" && seconds === "00") {
-          setIsTimerRunning(false);
-          alert("Time is Up!");
-        } else {
-          let nextSeconds = Number(seconds) - 1;
-          let nextMinutes = Number(minutes);
-          if (Number(nextSeconds) < 0) {
-            nextSeconds = "59";
-            nextMinutes = nextMinutes - 1;
-          }
-          if (nextSeconds.toString().length === 1) {
-            nextSeconds = nextSeconds.toString().padStart(2, 0);
-          }
-          if (nextMinutes.toString().length === 1) {
-            nextMinutes = nextMinutes.toString().padStart(2, 0);
-          }
-          setSeconds(nextSeconds);
-          setMinutes(nextMinutes);
-        }
+        handleTick();
       }, 1000);
       return () => {
         window.clearInterval(timeoutId);
       };
     }
-  }, [isTimerRunning, seconds, minutes]);
+  }, [isTimerRunning, seconds]);
 
   function handleClickStart() {
     setIsTimerRunning(!isTimerRunning);
