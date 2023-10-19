@@ -8,7 +8,7 @@ export default function Timer() {
   const [minutes, setMinutes] = React.useState(MINUTES);
   const [seconds, setSeconds] = React.useState(SECONDS);
 
-  // TODO: Update minutes logic
+  // TODO: check timer with actual timer. It seems to lag behind.
 
   React.useEffect(() => {
     function handleTick() {
@@ -18,23 +18,27 @@ export default function Timer() {
         return;
       }
 
+      // one second has passed, the clock has "ticked"
       let nextSeconds = Number(seconds) - 1;
 
+      // if seconds reach -1, seconds need to be reseted to 59 - a new minute
       if (nextSeconds === -1) {
         nextSeconds = 59;
+        // Minutes are updated since a whole minute has passed
         let nextMinutes = Number(minutes) - 1;
+        // format minutes to always show 2-digit format
         if (nextMinutes.toString().length === 1) {
           nextMinutes = nextMinutes.toString().padStart(2, 0);
         }
         setMinutes(nextMinutes);
       }
-
+      // format seconds to always show 2-digit format
       if (nextSeconds.toString().length === 1) {
         nextSeconds = nextSeconds.toString().padStart(2, 0);
       }
       setSeconds(nextSeconds);
     }
-
+    // it manages a second tick
     if (isTimerRunning) {
       const timeoutId = setTimeout(() => {
         handleTick();
@@ -43,7 +47,7 @@ export default function Timer() {
         window.clearInterval(timeoutId);
       };
     }
-  }, [isTimerRunning, seconds]);
+  }, [isTimerRunning, minutes, seconds]);
 
   function handleClickStart() {
     setIsTimerRunning(!isTimerRunning);
