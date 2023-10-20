@@ -2,16 +2,21 @@ import React from "react";
 
 const INITIALMINUTES = 0;
 const INITIALSECONDS = 5;
+const INITIALMESSAGE = "Pomodoro App";
 
 export default function Timer() {
   const [isTimerRunning, setIsTimerRunning] = React.useState(false);
   const [minutes, setMinutes] = React.useState(INITIALMINUTES);
   const [seconds, setSeconds] = React.useState(INITIALSECONDS);
+  const [message, setMessage] = React.useState(INITIALMESSAGE);
 
   React.useEffect(() => {
     function isTimeUp() {
       // check if time is up
-      if (minutes === 0 && seconds === 0) setIsTimerRunning(false);
+      if (minutes === 0 && seconds === 0) {
+        setIsTimerRunning(false);
+        setMessage("Time is Up!");
+      }
     }
 
     if (isTimerRunning) {
@@ -35,22 +40,25 @@ export default function Timer() {
   }, [isTimerRunning, minutes, seconds]);
 
   function handleClickStart() {
+    setMessage("Time to focus...");
     setIsTimerRunning(!isTimerRunning);
   }
 
   function handleClickStop() {
+    setMessage("Time is Up!");
     setIsTimerRunning(!isTimerRunning);
   }
 
   function handleClickReset() {
     setMinutes(INITIALMINUTES);
     setSeconds(INITIALSECONDS);
+    setMessage(INITIALMESSAGE);
   }
 
   return (
     <div className="timer">
       <header>
-        <h1>Pomodoro App</h1>
+        <h1>{message}</h1>
       </header>
       <main className="timer-characters">
         <span>{minutes < 10 ? "0" + minutes : minutes}</span>
