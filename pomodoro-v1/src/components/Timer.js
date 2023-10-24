@@ -1,43 +1,24 @@
 import React from "react";
 
-const INITIALMINUTES = 0;
+const INITIALMINUTES = 1;
 const INITIALSECONDS = 5;
 const INITIALMESSAGE = "Pomodoro App";
 
 export default function Timer() {
   const [isTimerRunning, setIsTimerRunning] = React.useState(false);
-  const [minutes, setMinutes] = React.useState(INITIALMINUTES);
-  const [seconds, setSeconds] = React.useState(INITIALSECONDS);
   const [message, setMessage] = React.useState(INITIALMESSAGE);
+  const [secondsLeft, setSecondsLeft] = React.useState(
+    INITIALMINUTES * 60 + INITIALSECONDS
+  );
 
   React.useEffect(() => {
-    function isTimeUp() {
-      // check if time is up
-      if (minutes === 0 && seconds === 0) {
-        setIsTimerRunning(false);
-        setMessage("Time is Up!");
-      }
-    }
-
     if (isTimerRunning) {
       const intervalId = setInterval(() => {
-        setSeconds((currentSeconds) => {
-          if (currentSeconds === 0) {
-            // one minute has elapsed
-            // minutes need to be decreased
-            setMinutes((currentMinutes) => currentMinutes - 1);
-            // seconds need to be reset
-            return 59;
-          } else {
-            // decrease seconds
-            return currentSeconds - 1;
-          }
-        });
+        setSecondsLeft((currentInterval) => currentInterval - 1);
       }, 1000);
-      isTimeUp();
       return () => clearInterval(intervalId);
     }
-  }, [isTimerRunning, minutes, seconds]);
+  }, [isTimerRunning]);
 
   function handleClickStart() {
     setMessage("Time to focus...");
@@ -45,15 +26,18 @@ export default function Timer() {
   }
 
   function handleClickStop() {
-    setMessage("Time is Up!");
+    setMessage(INITIALMESSAGE);
     setIsTimerRunning(!isTimerRunning);
   }
 
   function handleClickReset() {
-    setMinutes(INITIALMINUTES);
-    setSeconds(INITIALSECONDS);
     setMessage(INITIALMESSAGE);
+    setSecondsLeft(INITIALMINUTES * 60 + INITIALSECONDS);
+    setIsTimerRunning(!isTimerRunning);
   }
+
+  const minutes = Math.floor(secondsLeft / 60);
+  const seconds = Math.floor(secondsLeft % 60);
 
   return (
     <div className="timer">
