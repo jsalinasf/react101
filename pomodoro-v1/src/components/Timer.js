@@ -55,10 +55,10 @@ export default function Timer() {
     setSecondsLeft(INITIALMINUTES * 60 + INITIALSECONDS);
   }
 
-  // calculate minutes to display for the user
+  // using secondsLeft counter, I will calculate the 'minutes' to display
   const minutes = Math.floor(secondsLeft / 60);
-  // calculate seconds to display for the user
-  const seconds = Math.floor(secondsLeft % 60);
+  // using secondsLeft counter, I will calculate the 'seconds' to display
+  const seconds = secondsLeft % 60;
 
   return (
     <div className="timer">
