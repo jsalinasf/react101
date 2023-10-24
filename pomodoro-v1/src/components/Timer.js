@@ -7,6 +7,10 @@ const INITIALMESSAGE = "Pomodoro App";
 export default function Timer() {
   const [isTimerRunning, setIsTimerRunning] = React.useState(false);
   const [message, setMessage] = React.useState(INITIALMESSAGE);
+  // using secondsLeft as a second interval backward counter
+  // so I got rid of minutes and seconds state variables
+  // thank to this, my useEffect got cleaner and it is controlled by 'isTimerRunnig' only
+  // Josh's suggestion (via Discord) 👆
   const [secondsLeft, setSecondsLeft] = React.useState(
     INITIALMINUTES * 60 + INITIALSECONDS
   );
@@ -14,7 +18,19 @@ export default function Timer() {
   React.useEffect(() => {
     if (isTimerRunning) {
       const intervalId = setInterval(() => {
-        setSecondsLeft((currentInterval) => currentInterval - 1);
+        setSecondsLeft((currentInterval) => {
+          // checking if time is up
+          if (currentInterval === 1) {
+            // true - time is up!
+            // reset App settings, toggle isTimerRunning and return zero for secondsLeft
+            setMessage(INITIALMESSAGE);
+            setIsTimerRunning(!isTimerRunning);
+            return 0;
+          } else {
+            // false - decrease secondsLeft
+            return currentInterval - 1;
+          }
+        });
       }, 1000);
       return () => clearInterval(intervalId);
     }
@@ -22,6 +38,10 @@ export default function Timer() {
 
   function handleClickStart() {
     setMessage("Time to focus...");
+    // checking if secondsLeft need to be reseted or not
+    if (secondsLeft <= 0) {
+      setSecondsLeft(INITIALMINUTES * 60 + INITIALSECONDS);
+    }
     setIsTimerRunning(!isTimerRunning);
   }
 
@@ -33,10 +53,11 @@ export default function Timer() {
   function handleClickReset() {
     setMessage(INITIALMESSAGE);
     setSecondsLeft(INITIALMINUTES * 60 + INITIALSECONDS);
-    setIsTimerRunning(!isTimerRunning);
   }
 
+  // calculate minutes to display for the user
   const minutes = Math.floor(secondsLeft / 60);
+  // calculate seconds to display for the user
   const seconds = Math.floor(secondsLeft % 60);
 
   return (
@@ -45,8 +66,10 @@ export default function Timer() {
         <h1>{message}</h1>
       </header>
       <main className="timer-characters">
+        {/* minutes will always be displayed using 2-digit format */}
         <span>{minutes < 10 ? "0" + minutes : minutes}</span>
         <span>:</span>
+        {/* seconds will always be displayed using 2-digit format */}
         <span>{seconds < 10 ? "0" + seconds : seconds}</span>
       </main>
       <footer>
