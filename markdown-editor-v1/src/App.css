@@ -1,0 +1,52 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+body {
+  font-family: "Courier New", Courier, monospace;
+}
+
+.wrapper-markdown {
+  background-color: rgb(120, 163, 203);
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+
+.editor {
+  width: 50%;
+  margin: 0 auto;
+}
+
+.preview {
+  width: 50%;
+  margin: 0 auto;
+}
+
+.timer-characters {
+  font-size: 15em;
+}
+
+footer {
+  width: 40%;
+  max-width: 350px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-around;
+}
+
+footer button {
+  font-size: 1.1em;
+  padding: 0.25em 1em;
+}
+
+h1 {
+  font-size: 3rem;
+}
