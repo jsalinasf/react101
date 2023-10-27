@@ -2,7 +2,7 @@ import React from "react";
 import Editor from "./Editor";
 import Preview from "./Preview";
 
-export default function MarkDown(props) {
+export default function Markdown(props) {
   return (
     <div className="wrapper-global">
       <header>

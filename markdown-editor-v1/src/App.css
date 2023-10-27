@@ -10,11 +10,13 @@
 
 body {
   font-family: "Courier New", Courier, monospace;
+  background-color: rgb(120, 163, 203);
 }
 
 .wrapper-global {
-  background-color: rgb(120, 163, 203);
   height: 100vh;
+  margin: 0 auto;
+  max-width: 900px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;

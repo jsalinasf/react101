@@ -1,5 +1,5 @@
 import "./App.css";
-import Markdown from "./components/Mardown";
+import Markdown from "./components/Markdown";
 
 function App() {
   return <Markdown />;
