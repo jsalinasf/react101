@@ -1,5 +1,9 @@
 import React from "react";
 
 export default function Editor() {
-  return <textarea></textarea>;
+  return (
+    <div className="editor">
+      <textarea></textarea>
+    </div>
+  );
 }

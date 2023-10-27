@@ -1,5 +1,9 @@
 import React from "react";
 
 export default function Preview() {
-  return <textarea></textarea>;
+  return (
+    <div className="preview">
+      <textarea disabled="true"></textarea>
+    </div>
+  );
 }

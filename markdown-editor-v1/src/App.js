@@ -1,8 +1,8 @@
 import "./App.css";
-import MarkDown from "./components/MarkDown";
+import Markdown from "./components/Mardown";
 
 function App() {
-  return <MarkDown />;
+  return <Markdown />;
 }
 
 export default App;
