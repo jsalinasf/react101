@@ -8,11 +8,14 @@ export default function Editor({
   function processText(value) {
     const lines = value.split(String.fromCharCode(10));
     return lines.map((line) => {
-      if (line.startsWith("#")) {
+      if (line.startsWith("##")) {
+        line = line.slice(2);
+        return { element: "h2", properties: { id: line }, children: line };
+      } else if (line.startsWith("#")) {
         line = line.slice(1);
-        return `<h1>${line}</h1>`;
+        return { element: "h1", properties: { id: line }, children: line };
       } else {
-        return line;
+        return { element: "p", properties: { id: line }, children: line };
       }
     });
   }
