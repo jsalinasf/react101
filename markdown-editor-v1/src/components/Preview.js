@@ -1,9 +1,9 @@
 import React from "react";
 
-export default function Preview() {
+export default function Preview({ convertedText }) {
   return (
     <div className="preview">
-      <textarea disabled="true"></textarea>
+      <textarea value={convertedText} disabled={true}></textarea>
     </div>
   );
 }
