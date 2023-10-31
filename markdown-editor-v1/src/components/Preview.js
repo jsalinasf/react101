@@ -5,7 +5,6 @@ export default function Preview({ convertedText }) {
     <div className="preview">
       {Array.isArray(convertedText)
         ? convertedText.map((item) => {
-            // console.log(item);
             return React.createElement(
               item.element,
               item.properties,
